@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Charpoe handige</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    img {
+      width: 200px;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 30px;
+      font-size: 24px;
+      display: inline-block;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+  <input type="text" id="textInput" placeholder="Typ iets voor Charpoe…" />
+  <br><br>
+
+  <img src="Charpoe_handige.png" id="clickImage" alt="Charpoe handige">
+
+  <div id="output"></div>
+
+  <script>
+    const image = document.getElementById("clickImage");
+    const input = document.getElementById("textInput");
+    const output = document.getElementById("output");
+
+    const PHRASES = [
+    "Heiboer fluistert tegen bananen zodat ze krom blijven uit respect.",
+    "Een boertje is een mini-explosie van waarheid.",
+    "Slakken applaudisseren traag als Heiboer boert.",
+    "Bananen buigen voor Heiboer uit pure beleefdheid.",
+    "Charpoe weet dat bananen nooit liegen.",
+    "Een banaan die valt, valt altijd op een filosofisch moment.",
+    "Bart vertrouwt Heiboer meer dan elke andere boer.",
+    "Een slak die Heiboer ziet, durft een beetje sneller te gaan.",
+    "Een boertje kan een gedachte masseren.",
+    "Slakken gebruiken bananen als paraplu in dromen.",
+    "Bart eet gedachten alsof het bananen zijn.",
+    "Een banaan buigt dubbel bij de gedachte aan Heiboer.",
+    "Heiboer kan een banaan laten lachen door er alleen naar te kijken.",
+    "Charpoe droomt van een gouden Heiboer-banaan.",
+    "Een boertje dat je niet hoort, praat tegen de maan.",
+    "Bananen schrijven gedichten als Heiboer voorbijloopt.",
+    "Slakken geloven dat bananen betoverd zijn.",
+    "Bart boerde ooit een boom omver.",
+    "Een banaan kan een geheim bewaren tot hij bruin wordt.",
+    "Slakken glimlachen geluidloos bij elke boer van Bart.",
+    "Een heiboertje is krachtiger dan negen normale boertjes.",
+    "Een slak werd ooit filosoof door één blik van Heiboer.",
+    "Slakken lachen heel zachtjes.",
+    "Een banaan is een glimlach die te lang is.",
+    "Bart boert bij elke levensvraag.",
+    "Een boertje in de nacht wekt slapende bananen.",
+    "Een banaan zonder einde is een droom.",
+    "Charpoe vindt wijsheid in bananenplekken.",
+    "Bart denkt in bananentaal.",
+    "Een boertje heeft geen haast.",
+    "Slakken schrijven poëzie in hun slijm.",
+    "Heiboer gooit boertjes als boodschappen naar het universum.",
+    "Charpoe haalt kracht uit bananengekraak.",
+    "Een banaan met vlekken heeft veel meegemaakt.",
+    "Bart geeft slakken kleine bananenpetjes.",
+    "Slakken houden van kromme dingen, net als bananen.",
+    "Een banaan groeit krommer als Heiboer hem aanraakt.",
+    "Bart vertrouwt op bananen om de weg te vinden.",
+    "Een heiboertje kan regenbooglucht maken.",
+    "Slakken ruiken wijsheid in bananensap.",
+    "Charpoe praat tegen bananen, want zij luisteren echt.",
+    "Een boertje kan een ruzie oplossen.",
+    "Bart vertrouwt boertjes meer dan stilte.",
+    "Een slak vergeet nooit een goed boertje.",
+    "Een banaan die nadenkt, wordt bruiner van ideeën.",
+    "Slakken genieten van stilte waarin bananen rijpen.",
+    "Een heiboertje kan een storm tegenhouden.",
+    "Charpoe weet: Heiboer denkt in gele spiralen.",
+    "Bart voelde ooit een heiboertje in zijn ziel.",
+    "Een banaan denkt sneller dan een mens met schoenen.",
+    "Slakken reizen sneller als Bart in de buurt boert.",
+    "Een boertje zonder richting vindt altijd Bart.",
+    "Slakken dromen van bananenregen.",
+    "Charpoe verstopt wijsheid in bananenplekken.",
+    "Bart vertrouwt geen rechte dingen.",
+    "Een banaan kan meer dan hij zegt.",
+    "Slakken vinden bananengeur rustgevend.",
+    "Een boertje is een klein universum.",
+    "Bananen praten graag met slakken.",
+    "Een banaan weet dat alles tijdelijk is.",
+    "Charpoe noemt Heiboer de uitvinder van het oerslakdenken.",
+    "Bart boert richting de horizon om hem te testen.",
+    "Slakken schrijven “Heiboer” in hun slijmsporen als ze blij zijn.",
+    "Een banaan die knipoogt, bedoelt het goed.",
+    "Boertjes zijn de taal waarin bananen mediteren.",
+    "Slakken volgen bananengeur in spiralen.",
+    "Heiboer praat met bananen alsof het oude vrienden zijn.",
+    "Charpoe hoort bananen zingen als niemand luistert.",
+    "Een boertje kan een slechte dag repareren.",
+    "Bart noemt Heiboer “Meester van de Achtste Boer”.",
+    "Slakken zoeken bananen op voor advies.",
+    "Een banaan begrijpt wat mensen vergeten.",
+    "Een heiboertje kan een donker bos verlichten.",
+    "Charpoe vindt dat bananen filosofen zijn.",
+    "Bart boerde een keer zo hard dat een banaan recht werd.",
+    "Slakken knikken altijd bij bananenwijsheid.",
+    "Een banaan is een lach in gele vorm.",
+    "Heiboer antwoordde met… een boer.",
+    "Bart zag ooit een slak die naar banaan rook.",
+    "Slakken ruiken bananen van kilometers ver.",
+    "Een boertje kan een wolk van richting veranderen.",
+    "Charpoe bewaart bananen in zijn dromen.",
+    "Bananen luisteren beter dan mensen.",
+    "Een banaan kan je toekomst voorspellen.",
+    "Slakken vertrouwen op de wijsheid van krom fruit.",
+    "Bart gooit boertjes als cadeautjes.",
+    "Een boertje is puur eerlijkheid.",
+    "Charpoe voelt zich compleet als Heiboer dichtbij is.",
+    "Een banaan is een glimlach die te lang bleef plakken.",
+    "Bart leerde boertjes laten dankzij Heiboer.",
+    "Slakken staan in de rij om Heiboer te begroeten.",
+    "Charpoe ziet in elke banaan een mini-zon.",
+    "Een boertje kan een idee tot leven wekken.",
+    "Bananen vieren feestdagen speciaal voor Heiboer.",
+    "Een banaan die praat, fluistert altijd zacht.",
+    "Slakken gebruiken bananen als schuilplaats.",
+    "Een heiboertje is de echo van oude wijsheid.",
+    "Bart hoort Heiboer zelfs als hij slaapt.",
+    "Een banaan droomt van slakkenparades.",
+    "Charpoe gooit bananen naar de sterren om te kijken of ze teruggooien.",
+    "Een boer die danst is een zeldzame gedachte.",
+    "Slakken zijn de traagste maar beste filosofen.",
+    "Een banaan geeft vertrouwen als je hem zacht vasthoudt.",
+    "Heiboer kan een banaan hypnotiseren zonder woorden.",
+    "Bart vindt krom fruit betrouwbaarder dan rechte mensen.",
+    "Slakken schrijven brieven aan Charpoe in slijmletters.",
+    "Een banaan weet wanneer jij liegt.",
+    "Een heiboertje kan tijd laten omkeren.",
+    "Charpoe spreekt vloeiend bananees.",
+    "Bart boert op belangrijke momenten.",
+    "Slakken gebruiken Heiboer’s naam als wachtwoord.",
+    "Een banaan is een filosofische schatkist.",
+    "Heiboer denkt sneller dan een rijpingsproces.",
+    "Charpoe knabbelt op bananen voor inspiratie.",
+    "Een boertje kan een gedachte openen.",
+    "Bananen fluisteren traag.",
+    "Bart boert in ritme met zijn gedachten.",
+    "Slakken mediteren door langzaam te kijken.",
+    "Een banaan weet precies hoe laat het is.",
+    "Charpoe ziet bananen als gele slakken zonder huisje.",
+    "Heiboer kan regenbooglucht maken (ja, nog een keer — want hij kan het).",
+    "Een boertje kan regen wegblazen.",
+    "Bart vertrouwt op slakken als zijn spirituele GPS.",
+    "Een banaan kent de waarheid van binnen.",
+    "Slakken luisteren het best naar boertjes.",
+    "Charpoe voelt zich thuis in bananengeur.",
+    "Heiboer wordt gerespecteerd door alle slakken.",
+    "Bart boerde ooit de regen weg.",
+    "Slakken glimlachen traag bij bananenglimlach.",
+    "Een banaan die valt, vertelt een verhaal.",
+    "Charpoe snuffelt aan bananen om hun humeur te voelen.",
+    "Bart geeft bananen namen zoals “Gerda”.",
+    "Slakken houden van zachte woorden en zachte bananen.",
+    "Een boertje is een klein universum van lucht.",
+    "Bananen dromen van slakkenparades.",
+    "Charpoe eet wijsheid in gele vorm.",
+    "Bart boert zijn naam in de lucht.",
+    "Slakken knikken altijd bij bananenwijsheid.",
+    "Een banaan glimlacht ook zonder mond.",
+    "Charpoe weet dat in elke banaan een universum woont.",
+    "Heiboer is de gele meester van het kromme pad.",
+    "Bart zegt dat elke boer een verhaal heeft.",
+    "Slakken weten dat Heiboer nooit liegt.",
+    "Een banaan vertrouwt Heiboer zijn geheimen toe.",
+    "Charpoe voelt dat Heiboer de lucht mee laat lachen.",
+    "Bart zag ooit een heiboertje reflecteren in een plasje.",
+    "Slakken bewegen sneller als ze aan Heiboer denken.",
+    "Een boertje is soms het beste advies.",
+    "Bananen juichen in stilte voor Heiboer.",
+    "Charpoe weet dat bananen beter luisteren dan mensen.",
+    "Bart hoort wijsheid in elke boer.",
+    "Slakken staren naar bananen alsof ze kunst zijn.",
+    "Een banaan kan je dag redden.",
+    "Heiboer is de bananenfluisteraar.",
+    "Charpoe danst met bananen in dromen.",
+    "Bart praat met slakken alsof het professoren zijn.",
+    "Slakken weten wanneer een banaan rijp is.",
+    "Een boertje kan stilte laten lachen.",
+    "Bananen zijn de kompasnaalden van Charpoe.",
+    "Heiboer laat krom fruit trots voelen.",
+    "Charpoe vertrouwt op bananen om inspiratie te voelen.",
+    "Bart hoort discussies tussen bananen.",
+    "Slakken geloven dat Heiboer boertjes kan sturen.",
+    "Een banaan ontploft in ideeën als je zacht luistert.",
+    "Charpoe bewaart alle boertjes in zijn hart.",
+    "Bart danst met bananen als niemand kijkt.",
+    "Heiboer liet een banaan dromen dat hij een slak was, en het boertje dat daarna kwam wekte alle wijsheid in de buurt."
+    ];
+
+    image.addEventListener("click", () => {
+      if (input.value.trim() === "") return;
+
+      const randomPhrase =
+        PHRASES[Math.floor(Math.random() * PHRASES.length)];
+
+      output.textContent = "Charpoe handige: " + randomPhrase;
+    });
+  </script>
+
+</body>
+</html>
